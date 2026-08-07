@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "autoaim",
+  "version": "${version}",
+  "name": "AutoAim",
+  "description": "Client-side auto-aim that smoothly aims at the nearest player. Supports whitelist/blacklist.",
+  "authors": [
+    "Zhiai"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/autoaim/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "top.zamc.autoaim.client.AutoaimDataGenerator"
+    ],
+    "client": [
+      "top.zamc.autoaim.client.AutoaimClient"
+    ],
+    "main": [
+      "top.zamc.autoaim.Autoaim"
+    ],
+    "modmenu": [
+      "top.zamc.autoaim.client.ModMenuIntegration"
+    ]
+  },
+  "suggests": {
+    "cloth-config": "*",
+    "modmenu": "*"
+  },
+  "mixins": [
+    "autoaim.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

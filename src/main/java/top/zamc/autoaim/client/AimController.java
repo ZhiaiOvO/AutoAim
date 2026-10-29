@@ -10,6 +10,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
@@ -27,7 +28,9 @@ import java.util.Set;
  * 相比按 tick（20次/秒）更新转向更平滑、不卡顿。
  */
 public class AimController {
-    public static final String KEY_CATEGORY = "key.category.autoaim";
+    /** 1.21.9+ 起按键分类不再是字符串，而是 KeyBinding.Category（翻译键形如 key.category.<命名空间>.<路径>） */
+    public static final KeyBinding.Category KEY_CATEGORY =
+            KeyBinding.Category.create(Identifier.of("autoaim", "autoaim"));
     public static final String KEY_AIM = "key.autoaim.aim";
     public static final KeyBinding AIM_KEY =
             new KeyBinding(KEY_AIM, InputUtil.Type.KEYSYM, InputUtil.GLFW_KEY_R, KEY_CATEGORY);
@@ -244,6 +247,6 @@ public class AimController {
             return target.getEyePos();
         }
         Box box = target.getBoundingBox();
-        return box != null ? box.getCenter() : target.getPos();
+        return box != null ? box.getCenter() : target.getEntityPos();
     }
 }
